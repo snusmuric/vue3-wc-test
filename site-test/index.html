@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Outside site</title>
+
+<!--
+  dist/js/chunk-vendors.58270063.js     136.13 KiB                                                    50.05 KiB
+  dist/js/app.29d19779.js               7.57 KiB                                                      2.81 KiB
+  dist/js/chunk-2d0d7fc5.bf5a1346.js    0.52 KiB                                                      0.32 KiB
+  dist/css/app.25bf88e6.css                   0.42 KiB
+-->
+
+  <script src="js/chunk-vendors.58270063.js"></script>
+  <script src="js/app.29d19779.js"></script>
+  <script src="js/chunk-2d0d7fc5.bf5a1346.js"></script>
+  <link href="css/app.25bf88e6.css" rel="stylesheet">
+
+  <style>
+      header {
+          width: 100%;
+          background: grey;
+          top: 0;
+          box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.25);
+          opacity: .95;
+          font-size: 20px;
+          color: white;
+          height: 100px;
+      }
+
+      footer {
+          background: aliceblue;
+          width: 100%;
+          text-align: center;
+          font-size: 20px;
+          height: 100px;
+      }
+
+      main {
+          height: calc(100vh - 200px);
+          overflow: auto;
+      }
+  </style>
+</head>
+<body>
+<header>Header</header>
+
+<main>
+  <wc-test></wc-test>
+</main>
+
+<footer>footer</footer>
+</body>
+</html>
