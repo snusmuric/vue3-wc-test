@@ -1,6 +1,7 @@
 import { createRouter, createMemoryHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
+import Test from "../views/Test.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,7 +22,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/test",
     name: "test",
-    component: () => import("../views/Test.vue"),
+    component: Test,
+    // component: () => import("../views/Test.vue"),
   },
 ];
 

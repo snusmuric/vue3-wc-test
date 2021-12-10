@@ -16,14 +16,16 @@ specifiers:
   eslint-plugin-prettier: ^3.3.1
   eslint-plugin-vue: ^7.0.0
   prettier: ^2.2.1
+  regenerator-runtime: ^0.13.9
   sass: ^1.26.5
   sass-loader: ^8.0.2
   typescript: ~4.1.5
-  vue: ^3.0.0
-  vue-router: ^4.0.0-0
+  vue: ^3.2.24
+  vue-router: ^4.0.12
 
 dependencies:
   core-js: 3.19.3
+  regenerator-runtime: 0.13.9
   vue: 3.2.24
   vue-router: 4.0.12_vue@3.2.24
 
@@ -7542,7 +7544,6 @@ packages:
 
   /regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
-    dev: true
 
   /regenerator-transform/0.14.5:
     resolution: {integrity: sha512-eOf6vka5IO151Jfsw2NO9WpGX58W6wWmefK3I1zEGr0lOD0u8rwPaNqQL1aRxUaxLeKO3ArNh3VYg1KbaD+FFw==}

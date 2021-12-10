@@ -9,9 +9,15 @@ const increment = () => counter.value++;
   <div>
     <p>Counter={{ counter }}</p>
     <div>
-      <button @click="increment">increment++</button>
+      <button class="my-btn" @click="increment">increment++</button>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.my-btn {
+  background-color: #42b983;
+  color: white;
+  font-size: 24px;
+}
+</style>

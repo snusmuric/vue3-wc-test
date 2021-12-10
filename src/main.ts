@@ -35,16 +35,64 @@ class CustomElement extends HTMLElement {
 
     app.use(router);
 
-    // const root = document.createElement("div");
-    // this.appendChild(root);
-
     const root = this.attachShadow({ mode: "open" });
+
+    const styleLink = document.createElement("link");
+    styleLink.setAttribute("href", "css/app.css");
+    styleLink.setAttribute("rel", "stylesheet");
+    root.appendChild(styleLink);
+
     const appMountPoint = document.createElement("div");
     root.appendChild(appMountPoint);
 
-    app.mount(appMountPoint);
+    waitForCssLoaded(styleLink).then((loaded) => {
+      if (loaded) {
+        app.mount(appMountPoint);
+      } else {
+        console.error("Can't load css: css/app.css");
+      }
+    });
   }
 }
 
-window.customElements.define("wc-test", CustomElement);
-// createApp(App).use(router).mount("#app");
+function isCssLinkLoaded(linkElem: HTMLLinkElement) {
+  let cssLoaded = false;
+  try {
+    if ((linkElem?.sheet?.cssRules?.length ?? 0) > 0) {
+      cssLoaded = true;
+    } else if ((linkElem?.innerHTML?.length ?? 0) > 0) {
+      cssLoaded = true;
+    }
+  } catch (ex) {
+    cssLoaded = false;
+  }
+  return cssLoaded;
+}
+
+async function waitForCssLoaded(linkElem: HTMLLinkElement) {
+  if (isCssLinkLoaded(linkElem)) {
+    return true;
+  }
+  const pollPeriodicityMs = 50;
+  const maxWaitTimeMs = 10_000;
+  const maxAttempts = Math.ceil(maxWaitTimeMs / pollPeriodicityMs);
+  let attemptCount = 0;
+
+  return new Promise<boolean>((resolve) => {
+    const poller = setInterval(() => {
+      attemptCount++;
+      if (isCssLinkLoaded(linkElem)) {
+        clearTimeout(poller);
+        return setTimeout(() => resolve(true), 10000);
+        // return resolve(true);
+      }
+      if (attemptCount > maxAttempts) {
+        clearTimeout(poller);
+        return resolve(false);
+      }
+    });
+  });
+}
+
+window.customElements.define("wc-test", CustomElement); // for prod only
+// createApp(App).use(router).mount("#app"); // for dev
