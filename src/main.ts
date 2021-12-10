@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
+const isProd = process.env.NODE_ENV === 'production'
+
 class CustomElement extends HTMLElement {
   constructor() {
     super()
@@ -47,7 +49,7 @@ class CustomElement extends HTMLElement {
 
     waitForCssLoaded(styleLink).then((loaded) => {
       if (loaded) {
-        app.mount(appMountPoint)
+        setTimeout(() => app.mount(appMountPoint))
       } else {
         console.error("Can't load css: css/app.css")
       }
@@ -93,5 +95,8 @@ async function waitForCssLoaded(linkElem: HTMLLinkElement) {
   })
 }
 
-window.customElements.define('wc-test', CustomElement) // for prod only
-// createApp(App).use(router).mount("#app"); // for dev
+if (isProd) {
+  window.customElements.define('wc-test', CustomElement)
+} else {
+  createApp(App).use(router).mount('#app')
+}
